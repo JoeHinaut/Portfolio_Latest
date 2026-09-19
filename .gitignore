@@ -1,4 +1,9 @@
-﻿# OS / editor noise
+# dependencies & build output
+node_modules/
+dist/
+.wrangler/
+
+# OS / editor noise
 Thumbs.db
 desktop.ini
 .DS_Store

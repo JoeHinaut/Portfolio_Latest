@@ -1,515 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Fortren</title>
-
+<meta name="description" content="Fortren — Jose Adrianne Hinaut, graphic designer in Cebu City. Campaign posters, social sets and apparel graphics.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26' fill='none' stroke='%23E5004C' stroke-width='2'%3E%3Ccircle cx='13' cy='13' r='6.5'/%3E%3Cpath d='M13 0v26M0 13h26'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,100..900&family=DM+Mono:wght@300;400;500&family=Newsreader:opsz,wght@6..72,300..600&display=swap">
-
-<style>
-/* ============================================================
-   TOKENS
-   Light ground is a cool press sheet; dark is rich black — the
-   four-plate black a printer builds, not #000. The inks sit off
-   pure process, toward the hot pink-red and electric violet of a
-   badly-registered comic book.
-   ============================================================ */
-:root{
-  --paper:      #E6E7E2;
-  --paper-sunk: #DCDDD6;
-  --ink:        #141319;
-  --ink-2:      #57565F;
-  --rule:       rgba(20,19,25,.18);
-  --rule-soft:  rgba(20,19,25,.09);
-
-  --cyan:       #0093B4;
-  --magenta:    #E5004C;
-  --yellow:     #B08900;
-  --volt:       #5B3FD9;
-
-  --blend:      multiply;
-
-  --shell: 1400px;
-  --gutter: clamp(18px, 4vw, 56px);
-
-  --mono: "DM Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-  --display: "Anybody", "Archivo", "Helvetica Neue", sans-serif;
-  --text: "Newsreader", Georgia, "Times New Roman", serif;
-
-  --reg: 1.4;
-  --skew: 0;
-}
-
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --paper:      #0B0A11;
-    --paper-sunk: #14131C;
-    --ink:        #EDEDE8;
-    --ink-2:      #8B8996;
-    --rule:       rgba(237,237,232,.20);
-    --rule-soft:  rgba(237,237,232,.10);
-    --cyan:       #1FD1E8;
-    --magenta:    #FF2A6D;
-    --yellow:     #FFDD4A;
-    --volt:       #7B5CFF;
-    --blend:      screen;
-  }
-}
-:root[data-theme="dark"]{
-  --paper:      #0B0A11;
-  --paper-sunk: #14131C;
-  --ink:        #EDEDE8;
-  --ink-2:      #8B8996;
-  --rule:       rgba(237,237,232,.20);
-  --rule-soft:  rgba(237,237,232,.10);
-  --cyan:       #1FD1E8;
-  --magenta:    #FF2A6D;
-  --yellow:     #FFDD4A;
-  --volt:       #7B5CFF;
-  --blend:      screen;
-}
-
-*{ box-sizing: border-box; }
-
-body{
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--text);
-  font-size: 1rem;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-
-::selection{ background: var(--magenta); color: var(--paper); }
-a{ color: inherit; }
-:focus-visible{ outline: 2px solid var(--magenta); outline-offset: 3px; }
-
-/* ============================================================
-   PRESS FURNITURE
-   ============================================================ */
-#grain{
-  position: fixed; inset: -50%;
-  pointer-events: none; z-index: 900;
-  opacity: .30; mix-blend-mode: var(--blend);
-}
-.regmark{
-  position: fixed; width: 26px; height: 26px;
-  z-index: 880; pointer-events: none;
-  opacity: .45; color: var(--ink-2);
-}
-.regmark.tl{ top: calc(14px + env(safe-area-inset-top, 0px)); left: 14px; }
-.regmark.tr{ top: calc(14px + env(safe-area-inset-top, 0px)); right: 14px; }
-.regmark.bl{ bottom: calc(14px + env(safe-area-inset-bottom, 0px)); left: 14px; }
-.regmark.br{ bottom: calc(14px + env(safe-area-inset-bottom, 0px)); right: 14px; }
-@media (max-width: 700px){ .regmark{ display: none; } }
-
-/* ============================================================
-   SHELL
-   ============================================================ */
-.shell{
-  max-width: var(--shell);
-  margin-inline: auto;
-  padding-inline: var(--gutter);
-}
-.label{
-  font-family: var(--mono);
-  font-size: .68rem;
-  font-weight: 400;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-}
-
-/* ============================================================
-   MASTHEAD
-   ============================================================ */
-.masthead{
-  position: sticky;
-  top: env(safe-area-inset-top, 0px);
-  z-index: 800;
-  background: color-mix(in srgb, var(--paper) 86%, transparent);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--rule-soft);
-}
-.masthead-in{
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 16px; padding-block: 13px;
-}
-.mark{
-  position: relative;
-  font-family: var(--display);
-  font-variation-settings: "wdth" 112, "wght" 800;
-  font-size: .94rem; letter-spacing: .02em;
-  text-transform: uppercase; text-decoration: none;
-  isolation: isolate;
-}
-.mark::before, .mark::after{
-  content: attr(data-text);
-  position: absolute; top: 0; left: 0; width: 100%;
-  opacity: 0; pointer-events: none; z-index: -1;
-}
-.mark::before{ color: var(--cyan); }
-.mark::after{ color: var(--magenta); }
-.mark.tear::before{ animation: tear-a .34s steps(3, end) 1; }
-.mark.tear::after{ animation: tear-b .34s steps(3, end) 1; }
-@keyframes tear-a{
-  0%{ opacity:0; transform:translate(0); clip-path:inset(0 0 0 0); }
-  25%{ opacity:1; transform:translate(-4px,-1px); clip-path:inset(0 0 58% 0); }
-  60%{ opacity:1; transform:translate(3px,1px); clip-path:inset(52% 0 12% 0); }
-  100%{ opacity:0; transform:translate(0); }
-}
-@keyframes tear-b{
-  0%{ opacity:0; transform:translate(0); clip-path:inset(0 0 0 0); }
-  25%{ opacity:1; transform:translate(4px,1px); clip-path:inset(44% 0 22% 0); }
-  60%{ opacity:1; transform:translate(-3px,-2px); clip-path:inset(6% 0 70% 0); }
-  100%{ opacity:0; transform:translate(0); }
-}
-.masthead nav{ display: flex; gap: clamp(14px, 3vw, 30px); align-items: center; }
-.masthead nav a{
-  font-family: var(--mono); font-size: .7rem;
-  letter-spacing: .12em; text-transform: uppercase;
-  text-decoration: none; color: var(--ink-2); transition: color .2s;
-}
-.masthead nav a:hover{ color: var(--magenta); }
-.status{
-  display: inline-flex; align-items: center; gap: 7px;
-  font-family: var(--mono); font-size: .68rem;
-  letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2);
-}
-.dot{
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--magenta);
-  box-shadow: 0 0 0 0 color-mix(in srgb, var(--magenta) 55%, transparent);
-  animation: pulse 2.6s ease-out infinite;
-}
-@keyframes pulse{
-  0%{ box-shadow: 0 0 0 0 color-mix(in srgb, var(--magenta) 55%, transparent); }
-  70%{ box-shadow: 0 0 0 8px transparent; }
-  100%{ box-shadow: 0 0 0 0 transparent; }
-}
-@media (max-width: 620px){ .hide-sm{ display: none; } }
-
-/* ============================================================
-   HERO
-   ============================================================ */
-.hero{ position: relative; padding-block: clamp(46px, 9vw, 104px) clamp(26px, 4vw, 44px); }
-.hero::after{
-  content: "";
-  position: absolute; inset: 0;
-  background-image: radial-gradient(circle, var(--magenta) 1.05px, transparent 1.15px);
-  background-size: 7px 7px;
-  opacity: .17; pointer-events: none;
-  -webkit-mask-image: radial-gradient(ellipse 65% 85% at 88% 12%, #000 0%, transparent 72%);
-  mask-image: radial-gradient(ellipse 65% 85% at 88% 12%, #000 0%, transparent 72%);
-}
-.hero > *{ position: relative; z-index: 1; }
-
-.hero-meta{
-  display: flex; flex-wrap: wrap; gap: 10px 26px; align-items: baseline;
-  padding-bottom: clamp(16px, 3vw, 30px);
-  border-bottom: 1px solid var(--rule);
-  margin-bottom: clamp(18px, 3vw, 34px);
-}
-.kinetic{
-  font-family: var(--display);
-  font-size: clamp(3rem, 15.2vw, 11.5rem);
-  line-height: .86; letter-spacing: -.01em;
-  text-transform: uppercase; margin: 0; white-space: nowrap;
-  text-shadow:
-    calc(var(--reg) * -1px) 0 var(--cyan),
-    calc(var(--reg) *  1px) 0 var(--magenta);
-}
-.kinetic span{
-  display: inline-block;
-  font-variation-settings: "wdth" 100, "wght" 500;
-  will-change: font-variation-settings;
-}
-.kinetic.tear{ animation: sheet-slip .26s steps(2, end) 1; }
-@keyframes sheet-slip{
-  0%{ transform: translate(0); }
-  30%{ transform: translate(-7px, 2px); }
-  55%{ transform: translate(5px, -2px); }
-  80%{ transform: translate(-2px, 0); }
-  100%{ transform: translate(0); }
-}
-.hero-foot{
-  display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr);
-  gap: clamp(20px, 4vw, 56px); align-items: end;
-  margin-top: clamp(26px, 4vw, 46px);
-  padding-top: clamp(18px, 3vw, 28px);
-  border-top: 1px solid var(--rule);
-}
-.hero-foot p{
-  margin: 0; font-size: clamp(1.02rem, 1.5vw, 1.24rem);
-  line-height: 1.5; max-width: 46ch; color: var(--ink);
-}
-.hero-specs{ display: flex; flex-direction: column; gap: 5px; justify-self: end; text-align: right; }
-@media (max-width: 800px){
-  .hero-foot{ grid-template-columns: 1fr; }
-  .hero-specs{ justify-self: start; text-align: left; }
-}
-
-/* ============================================================
-   TICKER
-   ============================================================ */
-.ticker{
-  border-block: 1px solid var(--rule);
-  background: var(--paper-sunk);
-  overflow: hidden; padding-block: 11px;
-  margin-top: clamp(34px, 6vw, 70px);
-}
-.ticker-track{ display: flex; width: max-content; animation: roll 46s linear infinite; }
-.ticker-track > span{
-  font-family: var(--mono); font-size: .72rem;
-  letter-spacing: .12em; text-transform: uppercase;
-  color: var(--ink-2); padding-inline: 22px; white-space: nowrap;
-}
-.ticker-track > span b{ color: var(--magenta); font-weight: 400; }
-@keyframes roll{ to{ transform: translateX(-50%); } }
-
-/* ============================================================
-   WORK — grouped by campaign, not scattered as tiles
-   ============================================================ */
-section{ scroll-margin-top: 80px; }
-.sec-head{
-  display: flex; align-items: baseline; justify-content: space-between;
-  gap: 20px; flex-wrap: wrap;
-  padding-block: clamp(46px, 7vw, 86px) clamp(18px, 3vw, 30px);
-  border-bottom: 1px solid var(--rule);
-}
-.sec-head h2{
-  font-family: var(--display);
-  font-variation-settings: "wdth" 88, "wght" 750;
-  font-size: clamp(1.7rem, 4.4vw, 3rem);
-  line-height: 1; margin: 0;
-  text-transform: uppercase; letter-spacing: -.005em;
-}
-
-.project{ padding-top: clamp(38px, 5vw, 66px); }
-.project-head{
-  display: flex; align-items: baseline; justify-content: space-between;
-  gap: 14px 24px; flex-wrap: wrap;
-  padding-bottom: 12px; margin-bottom: clamp(16px, 2.4vw, 26px);
-  border-bottom: 1px solid var(--rule-soft);
-}
-.project-head h3{
-  font-family: var(--display);
-  font-variation-settings: "wdth" 96, "wght" 700;
-  font-size: clamp(1.3rem, 2.8vw, 2rem);
-  line-height: 1; margin: 0; text-transform: uppercase;
-}
-.project-head .meta{ display: flex; flex-wrap: wrap; gap: 6px 20px; }
-
-.grid{
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: clamp(16px, 2.2vw, 30px);
-}
-.piece{
-  grid-column: span 12;
-  display: block; width: 100%; margin: 0; padding: 0;
-  border: none; background: none; color: inherit;
-  text-align: left; cursor: zoom-in; font: inherit;
-}
-@media (min-width: 760px){
-  .c4{ grid-column: span 4; }
-  .c5{ grid-column: span 5; }
-  .c6{ grid-column: span 6; }
-  .c7{ grid-column: span 7; }
-  .c8{ grid-column: span 8; }
-}
-
-.frame{
-  position: relative; width: 100%; max-width: 100%;
-  overflow: hidden; background: var(--paper-sunk);
-  transform: skewY(calc(var(--skew) * 1deg));
-  transition: transform .5s cubic-bezier(.2,.8,.25,1);
-}
-/* the two plates that didn't line up */
-.frame::before, .frame::after{
-  content: ""; position: absolute; inset: 0;
-  border: 1.5px solid transparent;
-  transition: transform .34s cubic-bezier(.2,.8,.25,1), border-color .34s;
-  pointer-events: none; z-index: 2;
-}
-.piece:hover .frame::before, .piece:focus-visible .frame::before{
-  border-color: var(--cyan); transform: translate(-9px, 6px);
-}
-.piece:hover .frame::after, .piece:focus-visible .frame::after{
-  border-color: var(--magenta); transform: translate(9px, -6px);
-}
-.frame img{
-  display: block; width: 100%; height: 100%;
-  object-fit: cover;
-  transition: transform .6s cubic-bezier(.2,.8,.25,1);
-}
-.piece:hover .frame img, .piece:focus-visible .frame img{ transform: scale(1.035); }
-/* knocked-out apparel sheets sit on the page ground, not a panel */
-.frame.cutout{ background: transparent; }
-.frame.cutout img{ object-fit: contain; }
-.piece:hover .frame.cutout img, .piece:focus-visible .frame.cutout img{ transform: scale(1.02); }
-
-.cap{
-  display: flex; align-items: baseline; justify-content: space-between;
-  gap: 14px; margin-top: 11px; padding-bottom: 8px;
-  border-bottom: 1px solid var(--rule-soft);
-  transition: border-color .3s;
-}
-.piece:hover .cap{ border-color: var(--magenta); }
-.cap strong{
-  font-family: var(--display);
-  font-variation-settings: "wdth" 98, "wght" 600;
-  font-size: .95rem; text-transform: uppercase; font-weight: 400;
-}
-
-/* ============================================================
-   LIGHTBOX
-   ============================================================ */
-#lightbox{
-  position: fixed; inset: 0; z-index: 1000;
-  background: color-mix(in srgb, var(--paper) 94%, transparent);
-  backdrop-filter: blur(20px);
-  display: flex; flex-direction: column;
-  padding: clamp(14px, 3vw, 34px);
-  padding-top: calc(clamp(14px, 3vw, 34px) + env(safe-area-inset-top, 0px));
-  padding-bottom: calc(clamp(14px, 3vw, 34px) + env(safe-area-inset-bottom, 0px));
-  gap: 14px;
-}
-#lightbox[hidden]{ display: none !important; }
-.lb-bar{ display: flex; align-items: baseline; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
-.lb-bar strong{
-  font-family: var(--display);
-  font-variation-settings: "wdth" 96, "wght" 700;
-  font-size: clamp(1rem, 2.2vw, 1.5rem);
-  text-transform: uppercase; font-weight: 400;
-}
-#lb-close{
-  font-family: var(--mono); font-size: .7rem;
-  letter-spacing: .12em; text-transform: uppercase;
-  background: none; border: 1px solid var(--rule);
-  color: var(--ink); padding: 7px 13px; cursor: pointer;
-  transition: background .2s, color .2s, border-color .2s;
-}
-#lb-close:hover{ background: var(--magenta); color: var(--paper); border-color: var(--magenta); }
-.lb-stage{ flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; }
-.lb-stage img{ max-width: 100%; max-height: 100%; object-fit: contain; }
-
-/* ============================================================
-   STUDIO
-   ============================================================ */
-.studio{
-  display: grid; grid-template-columns: minmax(0,1.05fr) minmax(0,.95fr);
-  gap: clamp(30px, 5vw, 74px);
-  padding-top: clamp(30px, 4vw, 52px); align-items: start;
-}
-@media (max-width: 900px){ .studio{ grid-template-columns: 1fr; } }
-.bio p{
-  font-size: clamp(1.06rem, 1.6vw, 1.3rem);
-  line-height: 1.62; max-width: 62ch; margin: 0 0 1em;
-}
-.bio p:first-child::first-letter{
-  font-family: var(--display);
-  font-variation-settings: "wdth" 76, "wght" 800;
-  font-size: 3.1em; line-height: .78;
-  float: left; margin: .06em .1em 0 0; color: var(--magenta);
-}
-.bio dl{
-  display: grid; grid-template-columns: max-content 1fr;
-  gap: 7px 22px; margin: clamp(22px, 3vw, 34px) 0 0;
-  padding-top: 18px; border-top: 1px solid var(--rule);
-}
-.bio dt{ font-family: var(--mono); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
-.bio dd{ margin: 0; font-family: var(--mono); font-size: .8rem; }
-
-.specimen{ border: 1px solid var(--rule); background: var(--paper-sunk); padding: clamp(16px, 2.4vw, 26px); }
-.specimen-stage{
-  min-height: 118px; display: flex; align-items: center;
-  overflow-x: auto; padding-block: 12px; margin-bottom: 18px;
-  border-bottom: 1px solid var(--rule-soft);
-}
-#specimen-text{
-  font-family: var(--display);
-  font-size: clamp(2rem, 5.6vw, 3.6rem);
-  line-height: 1; white-space: nowrap; text-transform: uppercase;
-  font-variation-settings: "wdth" 100, "wght" 600; outline-offset: 6px;
-}
-.ctrl{ display: grid; grid-template-columns: 58px 1fr 52px; align-items: center; gap: 12px; margin-bottom: 9px; }
-.ctrl label{ font-family: var(--mono); font-size: .66rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); }
-.ctrl output{ font-family: var(--mono); font-size: .72rem; text-align: right; font-variant-numeric: tabular-nums; }
-.ctrl input[type=range]{
-  -webkit-appearance: none; appearance: none;
-  width: 100%; height: 1px; background: var(--rule); cursor: ew-resize;
-}
-.ctrl input[type=range]::-webkit-slider-thumb{
-  -webkit-appearance: none; appearance: none;
-  width: 13px; height: 13px; border-radius: 50%;
-  background: var(--magenta); border: none; cursor: ew-resize;
-}
-.ctrl input[type=range]::-moz-range-thumb{
-  width: 13px; height: 13px; border-radius: 50%;
-  background: var(--magenta); border: none; cursor: ew-resize;
-}
-.specimen .hint{ margin: 16px 0 0; }
-
-/* ============================================================
-   CONTACT
-   ============================================================ */
-.contact{ position: relative; padding-block: clamp(46px, 7vw, 92px) clamp(30px, 4vw, 50px); }
-.contact .spray{
-  position: absolute; inset: 0; pointer-events: none; opacity: .5;
-  background-repeat: repeat;
-  -webkit-mask-image: radial-gradient(ellipse 70% 90% at 12% 60%, #000 0%, transparent 70%);
-  mask-image: radial-gradient(ellipse 70% 90% at 12% 60%, #000 0%, transparent 70%);
-}
-.contact > *:not(.spray){ position: relative; z-index: 1; }
-.bigmail{
-  display: inline-block; font-family: var(--display);
-  font-variation-settings: "wdth" 84, "wght" 700;
-  font-size: clamp(1.9rem, 8.4vw, 6rem);
-  line-height: .95; text-transform: uppercase; text-decoration: none;
-  margin: clamp(14px, 2vw, 22px) 0 0; word-break: break-word;
-  transition: font-variation-settings .45s cubic-bezier(.2,.8,.25,1), color .3s, text-shadow .3s;
-}
-.bigmail:hover{
-  font-variation-settings: "wdth" 116, "wght" 800;
-  color: var(--magenta);
-  text-shadow: -3px 0 var(--cyan), 3px 0 var(--volt);
-}
-.flag{
-  display: inline-block; vertical-align: middle;
-  background: var(--magenta); color: var(--paper);
-  font-family: var(--mono); font-size: .6rem;
-  letter-spacing: .12em; text-transform: uppercase;
-  padding: 5px 9px; margin-left: 10px;
-}
-.socials{
-  display: flex; flex-wrap: wrap; gap: 10px 26px;
-  margin-top: clamp(26px, 4vw, 42px);
-  padding-top: 18px; border-top: 1px solid var(--rule);
-}
-.socials a{
-  font-family: var(--mono); font-size: .74rem;
-  letter-spacing: .1em; text-transform: uppercase;
-  text-decoration: none; color: var(--ink-2); transition: color .2s;
-}
-.socials a:hover{ color: var(--magenta); }
-
-footer{ border-top: 1px solid var(--rule); padding-block: 18px clamp(24px, 4vw, 40px); }
-.foot-in{ display: flex; flex-wrap: wrap; gap: 8px 30px; justify-content: space-between; }
-.disclaimer{ margin: 0 0 14px; max-width: 78ch; }
-
-/* ============================================================
-   MOTION OPT-OUT
-   ============================================================ */
-@media (prefers-reduced-motion: reduce){
-  *, *::before, *::after{
-    animation-duration: .001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: .001ms !important;
-  }
-  .ticker-track{ animation: none; }
-  .frame{ transform: none; }
-}
-</style>
+<link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
 
 <canvas id="grain" aria-hidden="true"></canvas>
 
@@ -578,23 +80,23 @@ footer{ border-top: 1px solid var(--rule); padding-block: 18px clamp(24px, 4vw, 
         </div>
       </div>
       <div class="grid">
-        <button class="piece c4" type="button" data-src="img/hydroflask-limited.jpg" data-title="Limited Edition" data-cap="Hydro Flask &middot; Poster concept">
+        <button class="piece c4" type="button" data-src="/img/hydroflask-limited.jpg" data-title="Limited Edition" data-cap="Hydro Flask &middot; Poster concept">
           <div class="frame" style="aspect-ratio: 27 / 40;">
-            <img src="img/hydroflask-limited.jpg" alt="Hydro Flask Limited Edition poster: a pale green bottle on a dark jungle backdrop with rotated LIMITED EDITION lettering and a 30% off mark." loading="lazy" width="1080" height="1600">
+            <img src="/img/hydroflask-limited.jpg" alt="Hydro Flask Limited Edition poster: a pale green bottle on a dark jungle backdrop with rotated LIMITED EDITION lettering and a 30% off mark." loading="lazy" width="1080" height="1600">
           </div>
           <div class="cap"><strong>Limited Edition</strong><span class="label">Poster</span></div>
         </button>
 
-        <button class="piece c4" type="button" data-src="img/hydroflask-aesthetic.jpg" data-title="Dive Into The Aesthetic" data-cap="Hydro Flask &middot; Poster concept">
+        <button class="piece c4" type="button" data-src="/img/hydroflask-aesthetic.jpg" data-title="Dive Into The Aesthetic" data-cap="Hydro Flask &middot; Poster concept">
           <div class="frame" style="aspect-ratio: 27 / 40;">
-            <img src="img/hydroflask-aesthetic.jpg" alt="Hydro Flask poster: five bottles fanned in a row on cream marble, with a Buy 2 get 20% off offer." loading="lazy" width="1080" height="1600">
+            <img src="/img/hydroflask-aesthetic.jpg" alt="Hydro Flask poster: five bottles fanned in a row on cream marble, with a Buy 2 get 20% off offer." loading="lazy" width="1080" height="1600">
           </div>
           <div class="cap"><strong>Dive Into The Aesthetic</strong><span class="label">Poster</span></div>
         </button>
 
-        <button class="piece c4" type="button" data-src="img/hydroflask-upgrade.jpg" data-title="Your Feed Called" data-cap="Hydro Flask &middot; Social concept">
+        <button class="piece c4" type="button" data-src="/img/hydroflask-upgrade.jpg" data-title="Your Feed Called" data-cap="Hydro Flask &middot; Social concept">
           <div class="frame" style="aspect-ratio: 27 / 40;">
-            <img src="img/hydroflask-upgrade.jpg" alt="Hydro Flask social post: a blue bottle against cracked ice with script lettering on white slabs reading Your feed called, it wants an upgrade." loading="lazy" width="1080" height="1600">
+            <img src="/img/hydroflask-upgrade.jpg" alt="Hydro Flask social post: a blue bottle against cracked ice with script lettering on white slabs reading Your feed called, it wants an upgrade." loading="lazy" width="1080" height="1600">
           </div>
           <div class="cap"><strong>Your Feed Called</strong><span class="label">Social</span></div>
         </button>
@@ -611,9 +113,9 @@ footer{ border-top: 1px solid var(--rule); padding-block: 18px clamp(24px, 4vw, 
         </div>
       </div>
       <div class="grid">
-        <button class="piece c8" type="button" data-src="img/ps5-unlock.jpg" data-title="Unlock The Power Within" data-cap="PlayStation 5 &middot; Retail banner concept">
+        <button class="piece c8" type="button" data-src="/img/ps5-unlock.jpg" data-title="Unlock The Power Within" data-cap="PlayStation 5 &middot; Retail banner concept">
           <div class="frame" style="aspect-ratio: 5 / 3;">
-            <img src="img/ps5-unlock.jpg" alt="Gaming retail banner: a PS5 controller centred on black with colourful graffiti lightning bolts and the headline Unlock The Power Within." loading="lazy" width="1600" height="960">
+            <img src="/img/ps5-unlock.jpg" alt="Gaming retail banner: a PS5 controller centred on black with colourful graffiti lightning bolts and the headline Unlock The Power Within." loading="lazy" width="1600" height="960">
           </div>
           <div class="cap"><strong>Unlock The Power Within</strong><span class="label">Banner</span></div>
         </button>
@@ -630,9 +132,9 @@ footer{ border-top: 1px solid var(--rule); padding-block: 18px clamp(24px, 4vw, 
         </div>
       </div>
       <div class="grid">
-        <button class="piece c8" type="button" data-src="img/level2-cafe.jpg" data-title="Level II Cafe" data-cap="Level II Cafe &middot; Brand mark concept">
+        <button class="piece c8" type="button" data-src="/img/level2-cafe.jpg" data-title="Level II Cafe" data-cap="Level II Cafe &middot; Brand mark concept">
           <div class="frame" style="aspect-ratio: 5 / 2;">
-            <img src="img/level2-cafe.jpg" alt="Level II Cafe logo: a numeral two inside a triangle beside the cafe name, in cream on tan diagonal bands." loading="lazy" width="1600" height="640">
+            <img src="/img/level2-cafe.jpg" alt="Level II Cafe logo: a numeral two inside a triangle beside the cafe name, in cream on tan diagonal bands." loading="lazy" width="1600" height="640">
           </div>
           <div class="cap"><strong>Level II Cafe</strong><span class="label">Identity</span></div>
         </button>
@@ -649,16 +151,16 @@ footer{ border-top: 1px solid var(--rule); padding-block: 18px clamp(24px, 4vw, 
         </div>
       </div>
       <div class="grid">
-        <button class="piece c6" type="button" data-src="img/merch-own-thing.png" data-title="Nah! I'ma Do My Own Thing" data-cap="Apparel graphic concept">
+        <button class="piece c6" type="button" data-src="/img/merch-own-thing.png" data-title="Nah! I'ma Do My Own Thing" data-cap="Apparel graphic concept">
           <div class="frame cutout" style="aspect-ratio: 1131 / 1600;">
-            <img src="img/merch-own-thing.png" alt="Crewneck apparel sheet: front and back mockups with a red and pink spray-textured Spider-Man graphic and stacked graffiti lettering reading Nah! I'ma do my own thing." loading="lazy" width="1131" height="1600">
+            <img src="/img/merch-own-thing.png" alt="Crewneck apparel sheet: front and back mockups with a red and pink spray-textured Spider-Man graphic and stacked graffiti lettering reading Nah! I'ma do my own thing." loading="lazy" width="1131" height="1600">
           </div>
           <div class="cap"><strong>Nah! I&rsquo;ma Do My Own Thing</strong><span class="label">Apparel</span></div>
         </button>
 
-        <button class="piece c6" type="button" data-src="img/merch-whats-up-danger.png" data-title="What's Up Danger!" data-cap="Apparel graphic concept">
+        <button class="piece c6" type="button" data-src="/img/merch-whats-up-danger.png" data-title="What's Up Danger!" data-cap="Apparel graphic concept">
           <div class="frame cutout" style="aspect-ratio: 1131 / 1600;">
-            <img src="img/merch-whats-up-danger.png" alt="Crewneck apparel sheet: front and back mockups with a purple and magenta spray-textured masked figure and graffiti lettering reading What's up danger." loading="lazy" width="1131" height="1600">
+            <img src="/img/merch-whats-up-danger.png" alt="Crewneck apparel sheet: front and back mockups with a purple and magenta spray-textured masked figure and graffiti lettering reading What's up danger." loading="lazy" width="1131" height="1600">
           </div>
           <div class="cap"><strong>What&rsquo;s Up Danger!</strong><span class="label">Apparel</span></div>
         </button>
@@ -675,16 +177,16 @@ footer{ border-top: 1px solid var(--rule); padding-block: 18px clamp(24px, 4vw, 
         </div>
       </div>
       <div class="grid">
-        <button class="piece c6" type="button" data-src="img/localtravels-coron.jpg" data-title="Reconnect With Nature" data-cap="Local Travels &middot; Social concept">
+        <button class="piece c6" type="button" data-src="/img/localtravels-coron.jpg" data-title="Reconnect With Nature" data-cap="Local Travels &middot; Social concept">
           <div class="frame" style="aspect-ratio: 1 / 1;">
-            <img src="img/localtravels-coron.jpg" alt="Travel social post: a limestone karst above turquoise water with the headline Reconnect With Nature and a Get 50% off button." loading="lazy" width="1600" height="1600">
+            <img src="/img/localtravels-coron.jpg" alt="Travel social post: a limestone karst above turquoise water with the headline Reconnect With Nature and a Get 50% off button." loading="lazy" width="1600" height="1600">
           </div>
           <div class="cap"><strong>Reconnect With Nature</strong><span class="label">Social</span></div>
         </button>
 
-        <button class="piece c6" type="button" data-src="img/localtravels-boracay.jpg" data-title="Explore Boracay" data-cap="Local Travels &middot; Social concept">
+        <button class="piece c6" type="button" data-src="/img/localtravels-boracay.jpg" data-title="Explore Boracay" data-cap="Local Travels &middot; Social concept">
           <div class="frame" style="aspect-ratio: 1 / 1;">
-            <img src="img/localtravels-boracay.jpg" alt="Travel social post: sailboats at sunset beside a torn white paint edge, with Explore Boracay in script and a booking offer." loading="lazy" width="1600" height="1600">
+            <img src="/img/localtravels-boracay.jpg" alt="Travel social post: sailboats at sunset beside a torn white paint edge, with Explore Boracay in script and a booking offer." loading="lazy" width="1600" height="1600">
           </div>
           <div class="cap"><strong>Explore Boracay</strong><span class="label">Social</span></div>
         </button>
@@ -770,256 +272,6 @@ footer{ border-top: 1px solid var(--rule); padding-block: 18px clamp(24px, 4vw, 
   <div class="lb-stage"><img id="lb-img" src="" alt=""></div>
 </div>
 
-<script>
-(function(){
-  "use strict";
-  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var root = document.documentElement;
-
-  /* ---------- 1. GRAIN -------------------------------------------------- */
-  (function grain(){
-    var c = document.getElementById("grain");
-    if (!c) return;
-    var size = 160;
-    c.width = size; c.height = size;
-    var ctx = c.getContext("2d");
-    var img = ctx.createImageData(size, size);
-    var d = img.data;
-    for (var i = 0; i < d.length; i += 4){
-      var v = (Math.random() * 255) | 0;
-      d[i] = d[i+1] = d[i+2] = v;
-      d[i+3] = 22;
-    }
-    ctx.putImageData(img, 0, 0);
-    var url = c.toDataURL();
-    c.outerHTML = '<div id="grain" aria-hidden="true" style="background-image:url(' + url + ');background-repeat:repeat"></div>';
-  })();
-
-  /* ---------- 2. SPRAY — irregular stipple no gradient can fake --------- */
-  (function spray(){
-    var host = document.getElementById("spray");
-    if (!host) return;
-    var S = 260;
-    var c = document.createElement("canvas");
-    c.width = S; c.height = S;
-    var ctx = c.getContext("2d");
-    ctx.fillStyle = getComputedStyle(root).getPropertyValue("--volt").trim() || "#7B5CFF";
-    for (var i = 0; i < 1400; i++){
-      var r = Math.random() * Math.random() * 2.4 + .25;
-      ctx.globalAlpha = .06 + Math.random() * .3;
-      ctx.beginPath();
-      ctx.arc(Math.random() * S, Math.random() * S, r, 0, Math.PI * 2);
-      ctx.fill();
-    }
-    host.style.backgroundImage = "url(" + c.toDataURL() + ")";
-  })();
-
-  /* ---------- 3. COLOPHON TICKER --------------------------------------- */
-  (function ticker(){
-    var track = document.getElementById("ticker");
-    if (!track) return;
-    var items = [
-      "Open for freelance <b>&mdash;</b> 2026",
-      "Campaign <b>/</b> Social <b>/</b> Apparel <b>/</b> Identity",
-      "Self-initiated concept work",
-      "Set in Anybody Variable, 50&ndash;150 wdth",
-      "Cebu City <b>&mdash;</b> GMT+8",
-      "Fortren <b>&mdash;</b> Jose Adrianne Hinaut"
-    ];
-    for (var pass = 0; pass < 2; pass++){
-      for (var i = 0; i < items.length; i++){
-        var s = document.createElement("span");
-        s.innerHTML = items[i];
-        track.appendChild(s);
-      }
-    }
-  })();
-
-  /* ---------- 4. KINETIC HEADLINE --------------------------------------
-     Each letter's width axis answers the cursor. The gaussian weights are
-     mean-centred per line, so widening one letter narrows its neighbours
-     and the line keeps its total width — it squeezes, never overflows.   */
-  (function kinetic(){
-    var lines = [].slice.call(document.querySelectorAll(".kinetic"));
-    if (!lines.length || reduce) return;
-
-    var letters = [];
-    lines.forEach(function(line){
-      [].slice.call(line.children).forEach(function(el){
-        letters.push({ el: el, line: line, x: 0, y: 0, w: 100, tw: 100, g: 500, tg: 500 });
-      });
-    });
-
-    var SIGMA = 150, AMP_W = 62, AMP_G = 400;
-    var pointer = { x: -9999, y: -9999, active: false };
-    var lastMove = 0;
-
-    function measure(){
-      letters.forEach(function(L){
-        var r = L.el.getBoundingClientRect();
-        L.x = r.left + r.width / 2;
-        L.y = r.top + r.height / 2;
-      });
-    }
-    measure();
-    window.addEventListener("resize", measure, { passive: true });
-    window.addEventListener("scroll", measure, { passive: true });
-    window.addEventListener("pointermove", function(e){
-      pointer.x = e.clientX; pointer.y = e.clientY;
-      pointer.active = true;
-      lastMove = performance.now();
-    }, { passive: true });
-
-    var t0 = performance.now();
-    (function frame(now){
-      var idle = !pointer.active || (now - lastMove) > 2200;
-      var perLine = {};
-
-      letters.forEach(function(L, i){
-        var g;
-        if (idle){
-          g = 0.5 + 0.5 * Math.sin(((now - t0) / 1400) - i * 0.62);
-        } else {
-          var dx = pointer.x - L.x;
-          var dy = (pointer.y - L.y) * 0.45;
-          g = Math.exp(-(dx*dx + dy*dy) / (2 * SIGMA * SIGMA));
-        }
-        L.g_raw = g;
-        (perLine[L.line.id] = perLine[L.line.id] || []).push(g);
-      });
-
-      var means = {};
-      Object.keys(perLine).forEach(function(k){
-        var a = perLine[k], s = 0;
-        for (var i = 0; i < a.length; i++) s += a[i];
-        means[k] = s / a.length;
-      });
-
-      letters.forEach(function(L){
-        var c = L.g_raw - means[L.line.id];
-        L.tw = Math.max(52, Math.min(148, 100 + AMP_W * c));
-        L.tg = Math.max(160, Math.min(900, 520 + AMP_G * c));
-        L.w += (L.tw - L.w) * 0.14;
-        L.g += (L.tg - L.g) * 0.14;
-        L.el.style.fontVariationSettings =
-          '"wdth" ' + L.w.toFixed(1) + ', "wght" ' + Math.round(L.g);
-      });
-
-      requestAnimationFrame(frame);
-    })(performance.now());
-  })();
-
-  /* ---------- 5. SCROLL VELOCITY → MISREGISTRATION ---------------------- */
-  (function press(){
-    if (reduce) return;
-    var REST = 1.4;
-    var last = window.scrollY, vel = 0, shown = REST, ticking = false;
-
-    function read(){ vel = window.scrollY - last; last = window.scrollY; ticking = false; }
-    window.addEventListener("scroll", function(){
-      if (!ticking){ ticking = true; requestAnimationFrame(read); }
-    }, { passive: true });
-
-    (function loop(){
-      var target = REST + Math.max(-9, Math.min(9, vel * 0.22));
-      shown += (target - shown) * 0.12;
-      vel *= 0.86;
-      root.style.setProperty("--reg", shown.toFixed(2));
-      root.style.setProperty("--skew", ((shown - REST) * 0.09).toFixed(3));
-      requestAnimationFrame(loop);
-    })();
-  })();
-
-  /* ---------- 6. THE SLIPPED SHEET -------------------------------------
-     Every 7–16s one element tears out of register for a few frames, then
-     recovers. Rare enough to read as a press fault, not an effect.       */
-  (function slip(){
-    if (reduce) return;
-    var targets = ["wordmark", "k1", "k2"]
-      .map(function(id){ return document.getElementById(id); })
-      .filter(Boolean);
-    if (!targets.length) return;
-
-    (function fire(){
-      if (!document.hidden){
-        var el = targets[(Math.random() * targets.length) | 0];
-        el.classList.add("tear");
-        setTimeout(function(){ el.classList.remove("tear"); }, 380);
-      }
-      setTimeout(fire, 7000 + Math.random() * 9000);
-    })();
-  })();
-
-  /* ---------- 7. LIGHTBOX ----------------------------------------------- */
-  (function lightbox(){
-    var box   = document.getElementById("lightbox");
-    var img   = document.getElementById("lb-img");
-    var title = document.getElementById("lb-title");
-    var cap   = document.getElementById("lb-cap");
-    var close = document.getElementById("lb-close");
-    if (!box || !img) return;
-    var opener = null;
-
-    function open(btn){
-      opener = btn;
-      var full = btn.querySelector("img");
-      img.src = btn.getAttribute("data-src");
-      img.alt = full ? full.alt : "";
-      title.textContent = btn.getAttribute("data-title") || "";
-      cap.innerHTML = btn.getAttribute("data-cap") || "";
-      box.hidden = false;
-      document.body.style.overflow = "hidden";
-      close.focus();
-    }
-    function shut(){
-      box.hidden = true;
-      img.src = "";
-      document.body.style.overflow = "";
-      if (opener) { opener.focus(); opener = null; }
-    }
-
-    [].slice.call(document.querySelectorAll(".piece")).forEach(function(btn){
-      btn.addEventListener("click", function(){ open(btn); });
-    });
-    close.addEventListener("click", shut);
-    box.addEventListener("click", function(e){ if (e.target === box || e.target.className === "lb-stage") shut(); });
-    document.addEventListener("keydown", function(e){
-      if (box.hidden) return;
-      if (e.key === "Escape") shut();
-      if (e.key === "Tab"){ e.preventDefault(); close.focus(); }  // trap: one control
-    });
-  })();
-
-  /* ---------- 8. TYPE SPECIMEN ------------------------------------------ */
-  (function specimen(){
-    var stage = document.getElementById("specimen-text");
-    var wd = document.getElementById("ax-wdth");
-    var wg = document.getElementById("ax-wght");
-    var tk = document.getElementById("ax-trk");
-    if (!stage || !wd || !wg || !tk) return;
-
-    var outs = {
-      wdth: document.getElementById("out-wdth"),
-      wght: document.getElementById("out-wght"),
-      trk:  document.getElementById("out-trk")
-    };
-    function apply(){
-      stage.style.fontVariationSettings = '"wdth" ' + wd.value + ', "wght" ' + wg.value;
-      stage.style.letterSpacing = (tk.value / 1000) + "em";
-      outs.wdth.textContent = wd.value;
-      outs.wght.textContent = wg.value;
-      outs.trk.textContent = tk.value;
-    }
-    [wd, wg, tk].forEach(function(el){ el.addEventListener("input", apply); });
-    apply();
-
-    stage.addEventListener("keydown", function(e){ if (e.key === "Enter") e.preventDefault(); });
-    stage.addEventListener("paste", function(e){
-      e.preventDefault();
-      var t = (e.clipboardData || window.clipboardData).getData("text") || "";
-      document.execCommand("insertText", false, t.replace(/\s+/g, " "));
-    });
-  })();
-
-})();
-</script>
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>
